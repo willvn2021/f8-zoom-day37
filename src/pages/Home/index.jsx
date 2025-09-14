@@ -5,7 +5,9 @@ function Home() {
     return (
         <div className={styles.wrapper}>
             <h1 className={styles.title}>Chào mừng bạn đã đến trang Home</h1>
-            <p className={styles.subtitle}>Trang Demo F8</p>
+            <p className={styles.subtitle}>
+                Trang Demo F8, bấm vào các nút để xem Demo
+            </p>
             <ul className={styles.navList}>
                 <li>
                     <Link to="/profile" className={styles.navLink}>
