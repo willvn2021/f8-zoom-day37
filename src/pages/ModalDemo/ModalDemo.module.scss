@@ -8,3 +8,20 @@
     margin: 0 auto;
     padding: 240px 20px;
 }
+
+.openBtn {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.customOverlay {
+    backdrop-filter: blur(3px);
+}
+
+.customModalBody {
+    background: linear-gradient(to right, #ece9e6, #ffffff);
+    min-width: 500px;
+}
