@@ -1,0 +1,114 @@
+.wrapper {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+
+    h1 {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: var(--text-primary, #161823);
+        margin-bottom: 16px;
+    }
+
+    .card,
+    .stateContainer {
+        background-color: var(--bg-card, #fff);
+        padding: 24px;
+        border-radius: var(--radius, 16px);
+        box-shadow: var(--shadow, 0 10px 25px -5px rgba(0, 0, 0, 0.05));
+        border: 1px solid var(--border-primary, #e0e7ff);
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stateContainer {
+        justify-content: center;
+        align-items: center;
+        font-style: italic;
+        color: var(--text-secondary, #555);
+
+        &.error {
+            color: var(--danger-primary, #dc3545);
+            font-weight: 500;
+        }
+    }
+
+    .card {
+        h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: var(--brand-primary, #6f5aff);
+            border-bottom: 1px solid var(--border-secondary, #eee);
+            padding-bottom: 12px;
+        }
+
+        .item {
+            padding: 10px 4px;
+            color: var(--text-secondary, #333);
+            line-height: 1.6;
+        }
+    }
+
+    .toggleButton {
+        background-color: var(--brand-secondary, #f05123);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        margin-bottom: 16px;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: #d94215;
+        }
+    }
+
+    // Dark Mode
+    .themeToggleButton {
+        grid-column: 1 / -1;
+        justify-self: end;
+
+        background-color: var(--bg-card, #fff);
+        color: var(--text-primary, #161823);
+        border: 1px solid var(--border-primary, #e0e7ff);
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+    }
+
+    .divider {
+        grid-column: 1 / -1;
+        height: 1px;
+        background-color: var(--border-primary, #e0e7ff);
+        margin: 20px 0;
+    }
+
+    &.dark {
+        background-color: #1a1a2e;
+
+        h1,
+        .item,
+        .stateContainer {
+            color: #e0e7ff;
+        }
+
+        .card,
+        .stateContainer {
+            background-color: #16213e;
+            border-color: #2a3b5e;
+        }
+    }
+}

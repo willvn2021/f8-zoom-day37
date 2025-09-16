@@ -1,9 +1,24 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Modal from "../../components/Modal";
 import styles from "./ModalDemo.module.scss";
 
 function ModalDemo() {
     const [isOpen, setIsOpen] = useState(false);
+    const modalRef = useRef(null);
+
+    // Tạo function quản lý khi muốn dùng qua ref
+    const handleOpenImperative = () => {
+        const shouldOpen = modalRef.current?.open();
+        if (shouldOpen) setIsOpen(true);
+    };
+
+    const handleCloseImperative = () => {
+        modalRef.current?.close();
+    };
+
+    const handleToggleImperative = () => {
+        setIsOpen(modalRef.current?.toggle());
+    };
 
     return (
         <div className={styles.wrapper}>
@@ -34,6 +49,11 @@ function ModalDemo() {
             <button className={styles.openBtn} onClick={() => setIsOpen(true)}>
                 Open Modal
             </button>
+            <div className={styles.imperativeActions}>
+                <button onClick={handleOpenImperative}>Open với Ref</button>
+                <button onClick={handleCloseImperative}>Close với Ref</button>
+                <button onClick={handleToggleImperative}>Toggle với Ref</button>
+            </div>
             <p>
                 Distinctio perferendis fugit ex aspernatur eveniet quis hic,
                 consequatur quae autem eaque? Explicabo sunt cupiditate
@@ -81,6 +101,7 @@ function ModalDemo() {
             </p>
 
             <Modal
+                ref={modalRef}
                 isOpen={isOpen}
                 onRequestClose={() => setIsOpen(false)}
                 shouldCloseOnOverlayClick={false}

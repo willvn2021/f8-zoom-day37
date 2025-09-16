@@ -1,22 +1,37 @@
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./Modal.module.scss";
 import clsx from "clsx";
 
-function Modal({
-    isOpen = false,
-    children,
-    onRequestClose,
-    shouldCloseOnOverlayClick = true,
-    shouldCloseEscKey = true,
-    onAfterOpen = () => {},
-    onAfterClose = () => {},
-    closeTimeoutMS = 0,
-    overlayClassName,
-    className,
-    bodyOpenClassName = "modal-open-body",
-    htmlOpenClassName = "modal-open",
-}) {
+const Modal = forwardRef((props, ref) => {
+    const {
+        isOpen = false,
+        children,
+        onRequestClose,
+        shouldCloseOnOverlayClick = true,
+        shouldCloseEscKey = true,
+        onAfterOpen = () => {},
+        onAfterClose = () => {},
+        closeTimeoutMS = 0,
+        overlayClassName,
+        className,
+        bodyOpenClassName = "modal-open-body",
+        htmlOpenClassName = "modal-open",
+    } = props;
+
+    // Các hàm được phép cho component cha
+    useImperativeHandle(ref, () => ({
+        open: () => {
+            return true;
+        },
+        close: () => {
+            onRequestClose?.();
+        },
+        toggle: () => {
+            return !isOpen;
+        },
+    }));
+
     const [isRendered, setIsRendered] = useState(isOpen);
 
     useEffect(() => {
@@ -110,7 +125,9 @@ function Modal({
             </div>
         </div>
     );
-}
+});
+
+Modal.displayName = "Modal";
 
 Modal.propTypes = {
     isOpen: PropTypes.bool,
